@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+resources/
+brainstorm.md
+building-figma-plugins
+storytelling.md
+# Local Claude Code config (not for public repo)
+.claude/
