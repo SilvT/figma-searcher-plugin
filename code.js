@@ -2,17 +2,6 @@ figma.showUI(__html__, { width: 456, height: 952, title: "Variable, Style & Effe
 figma.ui.postMessage({ type: "editor-info", editorType: figma.editorType });
 
 figma.ui.onmessage = async (msg) => {
-  if (msg.type === "get-setting") {
-    const value = await figma.clientStorage.getAsync(msg.key);
-    figma.ui.postMessage({ type: "setting-value", key: msg.key, value });
-    return;
-  }
-
-  if (msg.type === "set-setting") {
-    await figma.clientStorage.setAsync(msg.key, msg.value);
-    return;
-  }
-
   if (msg.type === "search") {
     const mode = msg.mode || "variable";
     const scope = msg.scope || "all-pages";

@@ -2,12 +2,6 @@
 
 ## Session — 2026-09-15
 
-### Added "Include date" setting for report filenames
-- New Settings → "Downloads" card with a toggle (default ON) controlling whether downloaded CSV/JSON reports get a `-YYYY-MM-DD` suffix. When off, single-search files are `{query}-report.csv/json` and multi-search files are `multi-search.csv/json`.
-- Persisted via `figma.clientStorage` (not localStorage) so the choice survives across plugin reopenings/file switches — confirmed with the user this doesn't affect the plugin's `networkAccess: { allowedDomains: ["none"] }` claim, since `clientStorage` is a local on-device API with no network calls, entirely separate from `fetch`/XHR gating.
-- `code.js`: added generic `get-setting`/`set-setting` message handlers wrapping `clientStorage.getAsync`/`setAsync`, reusable for future settings.
-- `ui.html`: new toggle wired to `includeDateInFilename`, requested from `code.js` on load; `downloadReport()` now builds the date suffix conditionally instead of always appending it. A live example filename (`e.g. color-primary-report-2026-09-15.csv` / `...report.csv`) sits under the toggle and updates immediately on change, so the naming effect is visible without downloading a report first.
-
 ### Renamed plugin to "Variable, Style & Effect Finder" for Community publishing
 - Decision: "Figma Searcher" was generic (every Community plugin is "a Figma thing") and didn't signal what the tool searches. Considered "variable finder" (38 existing Community plugins under that term) and "Token Search"/"Design Token Finder" before settling on the fully literal name for maximum keyword-match odds across variable/style/effect searches.
 - Also settled the license: switched `LICENSE` from the CaixaBank-only proprietary agreement to MIT, since the plugin is no longer scoped to one client.
