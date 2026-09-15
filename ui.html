@@ -1275,10 +1275,22 @@
 <div class="library-settings" id="librarySettingsPanel">
   <div class="settings-card">
     <div class="settings-card-title">Credits</div>
-    <span class="credits-plugin-name">Extended — Figma Searcher</span>
+    <span class="credits-plugin-name">Variable, Style & Effect Finder</span>
     <div class="credits-row"><span>Version</span><span>2.0</span></div>
     <div class="credits-row"><span>Created by</span><span><a href="https://github.com/SilvT" target="_blank" rel="noopener noreferrer">Silvia Travieso ↗</a></span></div>
     <!-- <div class="credits-row"><span>Built with</span><span>Claude Code</span></div> -->
+  </div>
+  <div class="settings-card">
+    <div class="settings-card-title">Downloads</div>
+    <div class="settings-card-desc">Report filenames</div>
+    <div class="top-line">
+      <span class="toggle-label" id="includeDateToggleLabel">Include date</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="includeDateToggle" checked />
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="settings-card-desc" id="includeDateExample">e.g. color-primary-report-2026-09-15.csv</div>
   </div>
 </div>
 
@@ -1417,6 +1429,7 @@
   let currentSection = "component-library";
   let ignoreNesting = false;
   let multiSearchMode = false;
+  let includeDateInFilename = true;
 
   const emptyResultsHtml = `<div class="empty"><div class="empty-icon">⊙</div><div>Search supports partial matches — enter any part of a variable name.</div></div>`;
 
@@ -1425,6 +1438,21 @@
     resultsEl.innerHTML = emptyResultsHtml;
     downloadSection.classList.remove("visible");
   }
+
+  const includeDateToggle = document.getElementById("includeDateToggle");
+  const includeDateExample = document.getElementById("includeDateExample");
+  function updateIncludeDateExample() {
+    includeDateExample.textContent = includeDateInFilename
+      ? "e.g. color-primary-report-2026-09-15.csv"
+      : "e.g. color-primary-report.csv";
+  }
+  includeDateToggle.addEventListener("change", () => {
+    includeDateInFilename = includeDateToggle.checked;
+    updateIncludeDateExample();
+    parent.postMessage({ pluginMessage: { type: "set-setting", key: "includeDateInFilename", value: includeDateInFilename } }, "*");
+  });
+  updateIncludeDateExample();
+  parent.postMessage({ pluginMessage: { type: "get-setting", key: "includeDateInFilename" } }, "*");
 
   const multisearchToggle = document.getElementById("multisearchToggle");
   multisearchToggle.addEventListener("change", () => {
@@ -1685,7 +1713,7 @@
     }));
     return JSON.stringify({
       exportDate: now,
-      exportedBy: "Figma Searcher v1.0",
+      exportedBy: "Variable, Style & Effect Finder v2.0",
       exportedFrom: isFoundations ? "Find (multiple)" : "Find",
       searchParams: {
         mode: mode,
@@ -1709,16 +1737,17 @@
     const namePart = multiSearchMode
       ? "multi-search"
       : `${currentQuery.replace(/[\/\s]+/g, "-").toLowerCase().substring(0, 40)}-report`;
+    const dateSuffix = includeDateInFilename ? `-${date}` : "";
 
     if (format === "csv") {
       content = multiSearchMode
         ? generateFreezeCsv(currentResults, currentQuery, currentScope)
         : generateCsv(currentResults, currentQuery, currentMode, currentScope);
-      filename = `${namePart}-${date}.csv`;
+      filename = `${namePart}${dateSuffix}.csv`;
       mimeType = "text/csv;charset=utf-8;";
     } else if (format === "json") {
       content = generateJson(currentResults, currentQuery, currentMode, currentScope, multiSearchMode);
-      filename = `${namePart}-${date}.json`;
+      filename = `${namePart}${dateSuffix}.json`;
       mimeType = "application/json;charset=utf-8;";
     }
 
@@ -1788,6 +1817,15 @@
 
     if (msg.type === "editor-info") {
       document.body.classList.toggle("dev-mode", msg.editorType === "dev");
+      return;
+    }
+
+    if (msg.type === "setting-value") {
+      if (msg.key === "includeDateInFilename" && typeof msg.value === "boolean") {
+        includeDateInFilename = msg.value;
+        includeDateToggle.checked = includeDateInFilename;
+        updateIncludeDateExample();
+      }
       return;
     }
 

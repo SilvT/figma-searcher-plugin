@@ -2,7 +2,7 @@
 
 ## Short version (for Figma's "Release notes" publish box)
 
-Figma Searcher has grown from a single variable-name search into a fast, focused design-token audit tool. Highlights since v1.0:
+Variable, Style & Effect Finder has grown from a single variable-name search into a fast, focused design-token audit tool. Highlights since v1.0:
 
 - **Multi-term search**: paste a list of names and search them all at once
 - Variable, style, and effect search, with export to **CSV** or **JSON**

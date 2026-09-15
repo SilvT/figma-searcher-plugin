@@ -1,10 +1,10 @@
-# Figma Searcher
+# Variable, Style & Effect Finder
 
-**Version:** 1.0.0  
-**License:** Proprietary (Licensed to CaixaBank — See LICENSE file)  
+**Version:** 2.0.0
+**License:** MIT — see LICENSE file
 **Author:** Silvia Travieso Gonzalez
-**Copyright:** © 2026 Silvia Travieso Gonzalez 
-**Distribution:** Licensed to CaixaBank Figma workspace only  
+**Copyright:** © 2026 Silvia Travieso Gonzalez
+**Distribution:** Figma Community (public)
 **Support:** Silvia Travieso (silvia.travieso.g@gmail.com)
 
 Finds every component using a specific variable, style, or effect in your Figma file. Search across your entire file or just the current page.
@@ -15,54 +15,38 @@ Can't remember which components use that blue color? Or need to see what breaks 
 
 ## What it does
 
-✅ Search for variables, styles, and effects  
-✅ Get a list of every component using them  
-✅ Click to jump to that component  
-✅ Search current page or entire file  
-✅ Export results as CSV or JSON  
+✅ Search for variables, styles, and effects
+✅ Get a list of every component using them
+✅ Click to jump to that component
+✅ Search current page or entire file
+✅ Export results as CSV or JSON
 ✅ Meaningful filenames based on search term
 
 ## What it doesn't do
 
-❌ Search across multiple files  
-❌ Search library components  
-❌ Rename or update tokens  
+❌ Search across multiple files
+❌ Search library components
+❌ Rename or update tokens
 
-## Installation (IT/Admin)
+## Installation
 
-This plugin is licensed exclusively for CaixaBank workspace. It is not available for public distribution or use by other organizations.
+**From Figma Community:**
+1. Find "Variable, Style & Effect Finder" in the Figma Community plugins page
+2. Click "Open in Figma" or install it from the Plugins menu inside any file
+3. Run it from Plugins → Variable, Style & Effect Finder
 
-**For IT/Admins:**
-1. Navigate to CaixaBank Figma Workspace Settings → Plugins
-2. Click "Manage plugins" or "Add plugins"
-3. Import this plugin via manifest URL or direct upload
-4. Approve for your organization
-5. Share link with design teams via internal wiki/Slack
-
-**For Users:**
-1. Open any Figma design file in CaixaBank workspace
-2. Go to Plugins menu → Figma Searcher (or via CaixaBank plugins)
-3. Start searching
-
-**Requirements:**
-- Figma account with CaixaBank workspace access
-- No special permissions needed (plugin operates on file contents only)
-- Works in Figma Web and Desktop (Mac/Windows)
-- Licensed for CaixaBank use only  
-
-## How to use it
-
-**Setup (one time):**
+**For local development:**
 1. Download this repo
 2. Figma → Plugins → Development → Import plugin from manifest
 3. Pick `manifest.json`
 
-**Using it:**
+## How to use it
+
 1. Open your design file
-2. Plugins → Development → Figma Searcher
+2. Plugins → Variable, Style & Effect Finder
 3. Pick a search mode: **Variable**, **Style**, or **Effect**
 4. Type what you're searching for:
-   - Variables: `colors/primary` or `blue` 
+   - Variables: `colors/primary` or `blue`
    - Styles: `drop shadow` or `heading large`
    - Effects: `elevation` or `blur`
 5. Choose scope: **This page** (fast) or **All pages** (thorough)
@@ -125,9 +109,9 @@ That's it. Local file only, no accounts, no syncing.
 
 ## Known Limitations
 
-❌ **Cannot search library components** — Only searches components in the current file  
-❌ **Cannot search across multiple files** — One file at a time  
-❌ **Cannot rename or update tokens** — Search and analysis only  
+❌ **Cannot search library components** — Only searches components in the current file
+❌ **Cannot search across multiple files** — One file at a time
+❌ **Cannot rename or update tokens** — Search and analysis only
 ❌ **Team/organization-wide search** — File scope only (design file must be open)
 
 ## Troubleshooting
@@ -156,22 +140,18 @@ That's it. Local file only, no accounts, no syncing.
 
 ## Support & Contact
 
-For bug reports, questions, or feature requests:  
-📧 **Email:** Silvia Traviesoat silvia.travieso.g@gmail.com  
-📋 **Response Time:** Within 1-2 business days  
-📝 **License Questions:** See LICENSE file for terms and restrictions
+For bug reports, questions, or feature requests:
+📧 **Email:** Silvia Travieso at silvia.travieso.g@gmail.com
+📝 **License:** See LICENSE file (MIT)
 
-## Security & Compliance
+## Security & Privacy Notes
 
-**IT Security Review Checklist:**
 - ✅ No external API calls or data transmission
 - ✅ No authentication or credential storage required
 - ✅ No local file storage or caching
 - ✅ No cookies, tracking, or analytics
-- ✅ Plugin operates in Figma iframe sandbox (isolated from host)
-- ✅ All code is reviewed and minified for production
+- ✅ Plugin operates in Figma's iframe sandbox (isolated from host)
 - ✅ No dependencies or package managers
-- ✅ Search input properly sanitized (no injection vectors)
 
 **Data Handling:**
 - Plugin processes only in-memory data from open Figma files
@@ -179,13 +159,6 @@ For bug reports, questions, or feature requests:
 - Export files are generated client-side only
 - User has full control over downloaded exports
 
-**For IT Approval:** This plugin has been reviewed for security and contains no risky patterns. It may be safely deployed to enterprise Figma workspaces.
-
 ## Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0.0 | 2026-06-25 | Initial release. Variables, Styles, Effects search. Export to CSV/JSON. Scope toggle. |
-
----
-
+See CHANGELOG.md for full version history.

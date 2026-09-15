@@ -1,50 +1,24 @@
-PROPRIETARY LICENSE AGREEMENT
+MIT License
 
 Copyright © 2026 Silvia Travieso Gonzalez
-All rights reserved.
 
-TERMS AND CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-This software ("Figma Searcher") is proprietary and is licensed
-(not sold) to CaixaBank for internal use within their Figma workspace only.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-LICENSED TO:
-CaixaBank - Authorized for use by employees and contractors for internal design
-system auditing and component analysis in their Figma workspace.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-PERMITTED USE:
-- Use within CaixaBank Figma workspace only
-- Internal design system auditing and component analysis
-- Search and analysis of design files (read-only operations)
-- Export results for internal reporting and compliance
-
-PROHIBITED USE:
-- Public distribution or sharing outside CaixaBank
-- Redistribution to other companies or clients
-- Commercial licensing to third parties
-- Modification or reverse engineering for distribution
-- Resale or sublicensing in any form
-- Use in competing products or services
-
-INTELLECTUAL PROPERTY:
-All code, design, and functionality remain the exclusive property of Silvia Travieso Gonzalez.
-The author retains all rights to use, modify, and license this technology to other
-clients and projects.
-
-RESTRICTIONS:
-- No warranty is provided, express or implied
-- No support beyond initial setup and critical bug fixes
-- Plugin may be updated, modified, or discontinued at any time
-- User agrees to data handling and privacy terms outlined in plugin documentation
-- Client may not claim ownership or authorship of the plugin
-
-MODIFICATIONS:
-CaixaBank may create internal modifications for their own use, but may not
-distribute modified versions. All derivative works remain subject to this license.
-
-For questions regarding licensing or use, contact: silvia.travieso.g@gmail.com
-
----
-Author: Silvia Travieso Gonzalez
-Version: 1.0.0
-Last Updated: June 25, 2026
+For questions, contact: silvia.travieso.g@gmail.com
+Github repo: https://github.com/SilvT/figma-searcher-plugin.git

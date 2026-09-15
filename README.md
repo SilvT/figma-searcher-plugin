@@ -1,61 +1,46 @@
-# Figma Searcher
+# Variable, Style & Effect Finder
 
-A Figma plugin for **designers and design system technologists**. It finds every layer using a variable, style, or effect — so you know exactly what's affected before you rename or delete a token.
+A Figma plugin that finds every layer using a specific variable, style, or effect — so you know exactly what's affected before you rename or delete a token.
 
-Figma has no native way to search variable/style/effect usage across a file. This plugin closes that gap without changing how your library is built.
+Figma has no native way to search token usage across a file. This closes that gap.
 
----
+## What it does
 
-## TL;DR
+- Search by **variable**, **style**, or **effect** name
+- Partial matches work — search "background" and find `core/background`, `brand/background`, `input-field/active/background`, etc.
+- Type names with `/` or `.` — both work the same
+- Search **one name at a time**, or paste a list to search **many at once**
+- Choose scope: current page (fast) or the whole file (thorough)
+- **Ignore nesting** — hide layers that only inherit a match from a parent, and see just the direct hits
+- Click any result to jump straight to that layer
+- Export results as **CSV** or **JSON**, named after your search term
 
-| You want to... | Use the... |
-|---|---|
-| Find every layer using a color, spacing, text style, or effect | **Find** tab |
+## Good for
 
-No accounts. No syncing. Nothing leaves your file.
-
----
-
-## 🔍 Find — "who's using this?"
-
-Search for a variable, style, or effect. Get a list of every layer using it, grouped by page.
-
-**Steps:**
-1. Open the plugin
-2. Pick a mode: **Variable**, **Style**, or **Effect**
-3. Type a name — partial matches work (`blue` finds `color/blue/500`)
-4. Pick a scope: **This page** (fast) or **All pages** (thorough)
-5. Hit Search
-6. Click any result to jump straight to that layer
-
-**Good to know:**
-- Flip the **Single → Multiple** switch to paste a whole list of names (one per line, or comma-separated) and search them all at once
-- **Ignore nesting** hides layers that only inherit the match from a parent — leaves you with the direct hits
-- Export your results as **CSV** (for spreadsheets) or **JSON** (for tooling), named after your search term automatically
-
-**Use it for:**
-- Checking what breaks *before* you rename or delete a token
-- Auditing where an old/deprecated style is still used
+- Checking what breaks before renaming or deleting a token
+- Auditing where an old or deprecated style is still used
 - Sanity-checking a design system rollout
-
----
 
 ## What it doesn't do
 
-- Doesn't search across multiple files at once (one file per search)
-- Doesn't search inside library components you haven't inserted into the file
-- Doesn't rename or edit anything — read-only, always
+- Search across multiple files at once
+- Search inside library components you haven't inserted into the file
+- Rename or edit anything — it's read-only, always
 
----
+## Install
+
+**From Figma Community:** search "Variable, Style & Effect Finder" and run it from the Plugins menu.
+
+**Local dev version:** clone this repo → Figma → Plugins → Development → Import plugin from manifest → pick `manifest.json`.
 
 ## Privacy
 
-Everything runs locally inside Figma. No data collection, no external servers, no tracking, no login required.
+Runs entirely inside Figma. No accounts, no external servers, no tracking, nothing leaves your file.
 
----
+## License
+
+MIT — see [LICENSE](LICENSE).
 
 ## Support
 
 Questions or bug reports: **Silvia Travieso** — silvia.travieso.g@gmail.com
-
-Built with Claude Code.

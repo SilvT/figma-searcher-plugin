@@ -2,6 +2,17 @@
 
 ## Session — 2026-09-15
 
+### Added "Include date" setting for report filenames
+- New Settings → "Downloads" card with a toggle (default ON) controlling whether downloaded CSV/JSON reports get a `-YYYY-MM-DD` suffix. When off, single-search files are `{query}-report.csv/json` and multi-search files are `multi-search.csv/json`.
+- Persisted via `figma.clientStorage` (not localStorage) so the choice survives across plugin reopenings/file switches — confirmed with the user this doesn't affect the plugin's `networkAccess: { allowedDomains: ["none"] }` claim, since `clientStorage` is a local on-device API with no network calls, entirely separate from `fetch`/XHR gating.
+- `code.js`: added generic `get-setting`/`set-setting` message handlers wrapping `clientStorage.getAsync`/`setAsync`, reusable for future settings.
+- `ui.html`: new toggle wired to `includeDateInFilename`, requested from `code.js` on load; `downloadReport()` now builds the date suffix conditionally instead of always appending it. A live example filename (`e.g. color-primary-report-2026-09-15.csv` / `...report.csv`) sits under the toggle and updates immediately on change, so the naming effect is visible without downloading a report first.
+
+### Renamed plugin to "Variable, Style & Effect Finder" for Community publishing
+- Decision: "Figma Searcher" was generic (every Community plugin is "a Figma thing") and didn't signal what the tool searches. Considered "variable finder" (38 existing Community plugins under that term) and "Token Search"/"Design Token Finder" before settling on the fully literal name for maximum keyword-match odds across variable/style/effect searches.
+- Also settled the license: switched `LICENSE` from the CaixaBank-only proprietary agreement to MIT, since the plugin is no longer scoped to one client.
+- Renamed across `manifest.json` (`name`), `code.js` (`showUI` title), `ui.html` (credits card label, JSON `exportedBy` tag), `README.md`, `README-publishing.md` (also stripped CaixaBank-specific IT/Admin install steps in favor of generic Community install steps), and `RELEASE-NOTES-v2.0.md`.
+
 ### Removed the Changelog/Freeze report feature entirely, ahead of Community publishing
 - Structural decision: this fork is being personalized for Figma Community publishing and should ship only Find (single/multi search across variables, styles, effects) and CSV/JSON export — the Changelog tab and its "Foundations library" targeting were tied to one client's KORA design system and don't belong in a general-purpose personal tool.
 - `code.js`: deleted the entire "Freeze report: text extraction" block — `pushLibraryInfo`, `initFreezeReport`, `pushExtractSelectionState`, `isHeaderLike`/`isCategoryHeader`/`isCollectionHeader`/`isRow`, `extractTexts`, `matchesFilter`, `filterEntries`, `filterByMode`, `buildPlainText` — plus the `set-target-library-key` and `extract-text` message handlers and their storage-key constants (`DEFAULT_TARGET_LIBRARY_KEY/NAME`, `TARGET_LIBRARY_*_STORAGE_KEY`, `EXTRACTION_STORAGE_KEY`). File went from 668 to 412 lines. Search (`search`/`select-nodes` handlers and their helpers) untouched.
