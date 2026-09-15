@@ -1,5 +1,11 @@
 # Changelog
 
+## Session — 2026-09-15 (Community readiness audit)
+
+### Removed `enablePrivatePluginApi` from manifest.json
+- Pre-publish audit (via `figma-plugin-shipping`) flagged this flag: grepped `code.js` for every `figma.*` call in use (`showUI`, `loadAllPagesAsync`, `getNodeByIdAsync`, `setCurrentPageAsync`, `viewport.scrollAndZoomIntoView`, `variables.getVariableByIdAsync`, `getStyleByIdAsync`) — none require private/undocumented API access. The flag was a leftover, unnecessary trust surface that Community review would flag.
+- Rest of the manifest/code/UI audit came back clean: no `console.log`/debug output, no hardcoded keys or personal file/team IDs, `networkAccess` correctly locked to `"none"` with zero `fetch()` calls anywhere, `documentAccess: "dynamic-page"` already correct, single bundled `code.js`/`ui.html` with fonts embedded as base64 data URIs (no external font/script requests), `icon.png` at the correct 128×128.
+
 ## Session — 2026-09-15
 
 ### Renamed plugin to "Variable, Style & Effect Finder" for Community publishing
