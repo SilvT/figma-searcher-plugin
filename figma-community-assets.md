@@ -2,7 +2,7 @@
 Variable, Style & Effect Finder
 
 ## Tagline
-Find every layer using a variable, style, or effect — search, batch search, download reports.
+Find every use of a variable, style, or effect — search, batch search, download reports.
 
 
 ## Description
