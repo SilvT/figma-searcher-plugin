@@ -6,6 +6,11 @@
 - `generateFreezeCsv` is not dead code: it is the live multi-search CSV export. Renamed to `generateMultiSearchCsv` and rewrote its comment.
 - Renamed `.foundations-card`/`#foundationsCardTitle*` to `.find-card`/`#findCardTitle*`, `isFoundations` to `isMultiSearch`, `library-settings-open` to `settings-open`, and the stale "Foundations dev-mode tab" comment in `code.js`. No behavior change.
 
+### Scoped a "Replace" tab (find and replace a variable)
+- Wrote `NEXT-STEPS.md`: v1 = one variable, one page, one property at a time, select matching layers, batch-swap to a local or library variable. Design mode only.
+- Key structural decision pending: Replace edits the file, which contradicts the "read-only, always" claim in the listing and README. Recommended shipping it in the same plugin with a confirm step and rewritten copy, versus a separate plugin.
+- Noted that `findVariableUsages` discards the property key and matches by partial name; Replace needs property-aware, id-based matching.
+
 ### Merged the "Include date" toggle into main
 - `main` had reverted the toggle (`d5b30e7`) to hold it on a feature branch; reverted that revert and merged `feature/report-date-toggle`, so the toggle ships in the Community release.
 
