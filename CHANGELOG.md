@@ -6,6 +6,10 @@
 - `generateFreezeCsv` is not dead code: it is the live multi-search CSV export. Renamed to `generateMultiSearchCsv` and rewrote its comment.
 - Renamed `.foundations-card`/`#foundationsCardTitle*` to `.find-card`/`#findCardTitle*`, `isFoundations` to `isMultiSearch`, `library-settings-open` to `settings-open`, and the stale "Foundations dev-mode tab" comment in `code.js`. No behavior change.
 
+### New plugin ID and updated artwork
+- `manifest.json` `id` replaced with a fresh Figma-assigned ID, so the Community plugin no longer shares an ID with the inherited fork.
+- Updated `icon.png` (128x128) and `figma-finder-cover.png` (now 1920x1080).
+
 ### Scoped a "Replace" tab (find and replace a variable)
 - Wrote `NEXT-STEPS.md`: v1 = one variable, one page, one property at a time, select matching layers, batch-swap to a local or library variable. Design mode only.
 - Key structural decision pending: Replace edits the file, which contradicts the "read-only, always" claim in the listing and README. Recommended shipping it in the same plugin with a confirm step and rewritten copy, versus a separate plugin.
