@@ -1,5 +1,11 @@
 # Changelog
 
+## Session — 2026-10-26
+
+### Removed remaining Freeze report / Foundations naming
+- `generateFreezeCsv` is not dead code: it is the live multi-search CSV export. Renamed to `generateMultiSearchCsv` and rewrote its comment.
+- Renamed `.foundations-card`/`#foundationsCardTitle*` to `.find-card`/`#findCardTitle*`, `isFoundations` to `isMultiSearch`, `library-settings-open` to `settings-open`, and the stale "Foundations dev-mode tab" comment in `code.js`. No behavior change.
+
 ## Session — 2026-09-15
 
 ### Added "Include date" setting for report filenames

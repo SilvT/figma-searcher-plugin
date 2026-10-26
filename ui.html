@@ -303,11 +303,11 @@
     opacity: 0.4;
   }
 
-  .library-settings, .settings-title {
+  .settings-panel, .settings-title {
     display: none;
   }
 
-  body.library-settings-open .settings-title {
+  body.settings-open .settings-title {
     display: flex;
     margin: var(--space-2) var(--space-5) var(--space-2);
   }
@@ -333,12 +333,12 @@
   }
 
   /* Settings panel is exclusive: hide every other section while it's open. */
-  body.library-settings-open .mode-row,
-  body.library-settings-open .foundations-card {
+  body.settings-open .mode-row,
+  body.settings-open .find-card {
     display: none !important;
   }
 
-  body.library-settings-open .library-settings {
+  body.settings-open .settings-panel {
     display: flex;
     flex-direction: column;
     flex: 0 0 auto;
@@ -348,7 +348,7 @@
   }
 
   /* Each settings section ("Core Library", "Credits") is its own card,
-     matching the .foundations-card / .component-row treatment used
+     matching the .find-card / .component-row treatment used
      elsewhere: white surface, subtle border, radius/md. */
   .settings-card {
     display: flex;
@@ -415,7 +415,7 @@
     margin: 0 0 var(--space-4);
   }
 
-  #foundationsCardTitle {
+  #findCardTitle {
     display: flex;
   }
 
@@ -426,7 +426,7 @@
     color: var(--color-ink);
   }
 
-  .foundations-card {
+  .find-card {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -668,7 +668,7 @@
 
   /* Content panel sitting directly below the mode tabs picks up the same
      accent border, echoing the active tab's left edge down through the panel. */
-  .foundations-card > .tab-panel {
+  .find-card > .tab-panel {
     container-type: inline-size;
     container-name: search-panel;
     border-left: 1.5px solid var(--color-accent);
@@ -1272,7 +1272,7 @@
 
 <div class="section-title settings-title"><span class="section-title-text">Settings</span></div>
 
-<div class="library-settings" id="librarySettingsPanel">
+<div class="settings-panel" id="settingsPanel">
   <div class="settings-card">
     <div class="settings-card-title">Credits</div>
     <span class="credits-plugin-name">Variable, Style & Effect Finder</span>
@@ -1294,8 +1294,8 @@
   </div>
 </div>
 
-<div class="foundations-card">
-  <div class="section-title" id="foundationsCardTitle"><span class="section-title-text" id="foundationsCardTitleText">Find</span></div>
+<div class="find-card">
+  <div class="section-title" id="findCardTitle"><span class="section-title-text" id="findCardTitleText">Find</span></div>
   <div class="mode-bar">
     <div class="mode-row">
       <div class="mode-tabs">
@@ -1397,7 +1397,7 @@
       </svg>
     </button>
 
-    <button class="section-tab settings-tab" id="settingsToggle" data-tooltip="Settings" aria-label="Settings" onclick="toggleLibrarySettings()">
+    <button class="section-tab settings-tab" id="settingsToggle" data-tooltip="Settings" aria-label="Settings" onclick="toggleSettings()">
       <svg viewBox="0 0 24 24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
         <circle cx="12" cy="12" r="3"/>
@@ -1485,9 +1485,9 @@
   // title's container rather than keeping it fixed/floating over content.
   function positionNav() {
     const nav = document.querySelector(".section-tabs");
-    const target = document.body.classList.contains("library-settings-open")
+    const target = document.body.classList.contains("settings-open")
       ? document.querySelector(".settings-title")
-      : document.getElementById("foundationsCardTitle");
+      : document.getElementById("findCardTitle");
     if (target && nav.parentElement !== target) target.appendChild(nav);
   }
 
@@ -1498,7 +1498,7 @@
 
       currentSection = tab.dataset.section;
 
-      document.body.classList.remove("library-settings-open");
+      document.body.classList.remove("settings-open");
       document.getElementById("settingsToggle").classList.remove("active");
       positionNav();
     });
@@ -1666,7 +1666,7 @@
     return rows.join("\n");
   }
 
-  // Freeze report runs multi-term searches, so a flat row-per-token CSV loses which
+  // Multi-term searches run several pasted terms at once, so a flat row-per-token CSV loses which
   // pasted term each row actually matched. This groups by term instead: a summary
   // block (term + match count) followed by the detail rows tagged with their term(s).
   function matchTermsForToken(token, terms) {
@@ -1674,7 +1674,7 @@
     return terms.filter(t => lower.includes(t.toLowerCase()));
   }
 
-  function generateFreezeCsv(data, query, scope) {
+  function generateMultiSearchCsv(data, query, scope) {
     const terms = query.split(", ");
     const termCounts = new Map(terms.map(t => [t, 0]));
     const detailRows = [];
@@ -1701,7 +1701,7 @@
     return [...summaryRows, "", detailHeader, ...detailRows].join("\n");
   }
 
-  function generateJson(data, query, mode, scope, isFoundations) {
+  function generateJson(data, query, mode, scope, isMultiSearch) {
     const now = new Date().toISOString();
     const cleanedResults = data.map(item => ({
       page: item.page,
@@ -1714,7 +1714,7 @@
     return JSON.stringify({
       exportDate: now,
       exportedBy: "Variable, Style & Effect Finder v2.0",
-      exportedFrom: isFoundations ? "Find (multiple)" : "Find",
+      exportedFrom: isMultiSearch ? "Find (multiple)" : "Find",
       searchParams: {
         mode: mode,
         query: query,
@@ -1741,7 +1741,7 @@
 
     if (format === "csv") {
       content = multiSearchMode
-        ? generateFreezeCsv(currentResults, currentQuery, currentScope)
+        ? generateMultiSearchCsv(currentResults, currentQuery, currentScope)
         : generateCsv(currentResults, currentQuery, currentMode, currentScope);
       filename = `${namePart}${dateSuffix}.csv`;
       mimeType = "text/csv;charset=utf-8;";
@@ -1800,8 +1800,8 @@
     });
   }
 
-  function toggleLibrarySettings() {
-    const isOpen = document.body.classList.toggle("library-settings-open");
+  function toggleSettings() {
+    const isOpen = document.body.classList.toggle("settings-open");
     if (isOpen) {
       document.body.classList.remove("multi-search-active");
     } else {
