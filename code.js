@@ -17,7 +17,7 @@ figma.ui.onmessage = async (msg) => {
     const mode = msg.mode || "variable";
     const scope = msg.scope || "all-pages";
 
-    // Foundations dev-mode tab sends `queries` (array, multiple variables at once);
+    // Multiple-search mode sends `queries` (array, multiple variables at once);
     // the standard search sends a single `query` string. Normalize to an array of
     // terms either way so the matching logic only has one path (OR-matched).
     const originalQueries = Array.isArray(msg.queries) ? msg.queries : [msg.query || ""];
